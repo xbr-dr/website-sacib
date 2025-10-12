@@ -1,0 +1,96 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    background: #f5f7fa;
+    color: #333;
+}
+
+header {
+    text-align: center;
+    background-color: #004466;
+    color: white;
+    padding: 15px;
+}
+
+header h1 {
+    margin: 5px 0;
+}
+
+header h3 {
+    margin: 0;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+/* Map */
+#map {
+    height: 400px;
+    margin: 15px auto;
+    width: 90%;
+    border: 2px solid #004466;
+    border-radius: 10px;
+}
+
+/* Details Section */
+#details {
+    width: 90%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+#details h2 {
+    color: #004466;
+}
+
+#details p {
+    font-size: 0.95rem;
+    margin: 5px 0 15px 0;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #004466;
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Plots */
+#plots {
+    margin-top: 20px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #004466;
+    color: white;
+}
+
+footer a {
+    color: #ffd700;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

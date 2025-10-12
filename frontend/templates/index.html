@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoPredict</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+</head>
+<body>
+    <header>
+        <h1>GeoPredict</h1>
+        <h3>Predictive and Geospatial Water Quality Alert System for Lakes in Kashmir</h3>
+    </header>
+
+    <main>
+        <div id="map"></div>
+
+        <div id="details">
+            <h2 id="lake-name">Dal Lake</h2>
+            <p id="lake-desc">Dal Lake is a famous urban lake in Srinagar.</p>
+
+            <div id="actions"></div>
+
+            <table id="lake-table">
+                <thead>
+                    <tr>
+                        <th>Max BOD</th>
+                        <th>Max Conductivity</th>
+                        <th>Max DO</th>
+                        <th>Max Temp</th>
+                        <th>Max pH</th>
+                        <th>Min BOD</th>
+                        <th>Min Conductivity</th>
+                        <th>Min DO</th>
+                        <th>Min Temp</th>
+                        <th>Min pH</th>
+                        <th>Lake</th>
+                        <th>Source</th>
+                        <th>Year</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <div id="plots">
+                <canvas id="lineChart"></canvas>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        Developed by <a href="https://www.linkedin.com/in/sacib-mir/" target="_blank">Saqib Mir</a> under the supervision of Dr. Khursheed Ah. Dar
+    </footer>
+
+    <!-- JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
