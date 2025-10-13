@@ -31,14 +31,14 @@ const lakeInfo = {
         locals. It is integral to tourism and recreation in the Kashmir Valley and is variously known as 
         the "Lake of Flowers", "Jewel in the crown of Kashmir" or "Srinagar's Jewel". The lake is also an 
         important source for commercial operations in fishing and water plant harvesting.
-        <a href="https://en.wikipedia.org/wiki/Dal_Lake" target="_blank" rel="noopener noreferrer">Read more on Wikipedia</a>
+        <a href="https://en.wikipedia.org/wiki/Dal_Lake" target="_blank" rel="noopener noreferrer">Read more on Wikipedia</a><br>
     `,
     "Wular Lake": `
         Wular Lake, located in the Bandipora district of Jammu and Kashmir, is one of the largest freshwater 
         lakes in Asia. It plays a crucial role in controlling floods in the Jhelum River basin and supports 
         rich biodiversity, including migratory birds and aquatic vegetation. The lake is a key resource for 
         local communities who depend on it for fishing, water transport, and agriculture.
-        <a href="https://en.wikipedia.org/wiki/Wular_Lake" target="_blank" rel="noopener noreferrer">Read more on Wikipedia</a>
+        <a href="https://en.wikipedia.org/wiki/Wular_Lake" target="_blank" rel="noopener noreferrer">Read more on Wikipedia</a><br>
     `
 };
 
