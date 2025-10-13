@@ -19,12 +19,16 @@ L.control.layers(baseLayers).addTo(map);
 // --- Lakes data ---
 const lakes = [
     {name: "Dal Lake", coords: [34.115820567793925, 74.87038724125391], desc: "Dal Lake is a famous urban lake in Srinagar."},
-    {name: "Wular Lake", coords: [34.34842187394441, 74.55284157368692], desc: "Wular Lake is one of the largest freshwater lakes in Asia."}
+    {name: "Wular Lake", coords: [34.34842187394441, 74.55284157368692], desc: "Wular Lake is one of the largest freshwater lakes in Asia.", Image: "wular.jpg"}
 ];
 
 // --- Long description for each lake ---
 const lakeInfo = {
     "Dal Lake": `
+        <div style="display:flex;flex-direction:column;align-items:center;">
+            <img src="static/dal.jpg" alt="Dal Lake" style="width:100%;max-width:2160px;height:auto;margin-top:10px;border-radius:20px;display:block;">
+            <span style="margin-top:8px;font-size:1em;color:#555;text-align:center;">©  imad Clicks</span>
+        </div>
         Dal (Urdu pronunciation: [ɖəl]; Kashmiri pronunciation: [ɖal]) is a freshwater lake in Srinagar,
         the summer capital of Jammu and Kashmir in Indian-administered Kashmir. It is an urban lake, the 
         second largest lake in Jammu and Kashmir, and the most visited place in Srinagar by tourists and 
@@ -34,6 +38,10 @@ const lakeInfo = {
         <a href="https://en.wikipedia.org/wiki/Dal_Lake" target="_blank" rel="noopener noreferrer">Read more on Wikipedia</a><br>
     `,
     "Wular Lake": `
+        <div style="display:flex;flex-direction:column;align-items:center;">
+            <img src="static/wular.jpg" alt="Wular Lake" style="width:100%;max-width:2160px;height:auto;margin-top:10px;border-radius:20px;display:block;">
+            <span style="margin-top:8px;font-size:1em;color:#555;text-align:center;">© baramulla.nic.in </span>
+        </div>
         Wular Lake, located in the Bandipora district of Jammu and Kashmir, is one of the largest freshwater 
         lakes in Asia. It plays a crucial role in controlling floods in the Jhelum River basin and supports 
         rich biodiversity, including migratory birds and aquatic vegetation. The lake is a key resource for 
