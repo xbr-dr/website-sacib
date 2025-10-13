@@ -1,28 +1,65 @@
-let map = L.map('map').setView([34.11582, 74.87038], 11);
+// Initialize map
+let map = L.map('map').setView([34.22947024039823, 74.71906692726527], 10);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: 'Xbr_Dr'
-}).addTo(map);
+// --- Base layers: OpenStreetMap + Satellite ---
+const baseLayers = {
+    "OpenStreetMap": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '©OSM | <a href="https://github.com/xbr-dr" target="_blank" rel="noopener noreferrer">XbrDr</a>'
+    }).addTo(map),
 
+    "Satellite (Esri)": L.tileLayer(
+        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+        { attribution: '© Esri | <a href="https://github.com/xbr-dr" target="_blank" rel="noopener noreferrer">XbrDr</a>' }
+    )
+};
+
+// Layer control (top-right)
+L.control.layers(baseLayers).addTo(map);
+
+// --- Lakes data ---
 const lakes = [
-    {name: "Dal lake", coords: [34.115820567793925, 74.87038724125391], desc: "Dal Lake is a famous urban lake in Srinagar."},
-    {name: "Wular lake", coords: [34.34842187394441, 74.55284157368692], desc: "Wular Lake is one of the largest freshwater lakes in Asia."}
+    {name: "Dal Lake", coords: [34.115820567793925, 74.87038724125391], desc: "Dal Lake is a famous urban lake in Srinagar."},
+    {name: "Wular Lake", coords: [34.34842187394441, 74.55284157368692], desc: "Wular Lake is one of the largest freshwater lakes in Asia."}
 ];
+
+// --- Long description for each lake ---
+const lakeInfo = {
+    "Dal Lake": `
+        Dal (Urdu pronunciation: [ɖəl]; Kashmiri pronunciation: [ɖal]) is a freshwater lake in Srinagar,
+        the summer capital of Jammu and Kashmir in Indian-administered Kashmir. It is an urban lake, the 
+        second largest lake in Jammu and Kashmir, and the most visited place in Srinagar by tourists and 
+        locals. It is integral to tourism and recreation in the Kashmir Valley and is variously known as 
+        the "Lake of Flowers", "Jewel in the crown of Kashmir" or "Srinagar's Jewel". The lake is also an 
+        important source for commercial operations in fishing and water plant harvesting.
+        <a href="https://en.wikipedia.org/wiki/Dal_Lake" target="_blank" rel="noopener noreferrer">Read more on Wikipedia</a>
+    `,
+    "Wular Lake": `
+        Wular Lake, located in the Bandipora district of Jammu and Kashmir, is one of the largest freshwater 
+        lakes in Asia. It plays a crucial role in controlling floods in the Jhelum River basin and supports 
+        rich biodiversity, including migratory birds and aquatic vegetation. The lake is a key resource for 
+        local communities who depend on it for fishing, water transport, and agriculture.
+        <a href="https://en.wikipedia.org/wiki/Wular_Lake" target="_blank" rel="noopener noreferrer">Read more on Wikipedia</a>
+    `
+};
 
 let chartInstances = {}; // store multiple charts
 let lakeData = [];
 
-// Fetch data from backend
+// --- Fetch data from backend ---
 fetch('/api/data')
     .then(response => response.json())
     .then(data => {
         console.log("Fetched data:", data);
         lakeData = data;
 
-        // Add map markers
+        // Add markers for both lakes
         lakes.forEach(lake => {
             let marker = L.marker(lake.coords).addTo(map).bindPopup(lake.name);
-            marker.on('click', () => showLakeDetails(lake));
+            marker.on('click', () => {
+                map.setView(lake.coords, 12, { animate: true });
+                marker.openPopup();
+                showLakeDetails(lake);
+            });
         });
 
         // Show default lake
@@ -30,9 +67,16 @@ fetch('/api/data')
     })
     .catch(err => console.error(err));
 
+// --- Show details function ---
 function showLakeDetails(lake) {
     document.getElementById('lake-name').innerText = lake.name;
     document.getElementById('lake-desc').innerText = lake.desc;
+
+    // Update long description (h5 or #lake-info)
+    const infoElement = document.getElementById('lake-info') || document.querySelector('#details h5');
+    if (infoElement) {
+        infoElement.innerHTML = lakeInfo[lake.name] || lake.desc;
+    }
 
     // Correct key for lake name in JSON
     const lakeNameKey = "Name of Lake";
@@ -41,7 +85,7 @@ function showLakeDetails(lake) {
     const tbody = document.querySelector("#lake-table tbody");
     tbody.innerHTML = '';
 
-    if(lakeRows.length === 0) {
+    if (lakeRows.length === 0) {
         tbody.innerHTML = `<tr><td colspan="13">No data found for ${lake.name}</td></tr>`;
         // Clear plots
         Object.values(chartInstances).forEach(chart => chart.destroy());
@@ -54,7 +98,7 @@ function showLakeDetails(lake) {
         const tr = document.createElement('tr');
         tr.innerHTML = Object.keys(row).map(k => {
             let val = row[k];
-            if(typeof val === "number") val = val.toFixed(2);
+            if (typeof val === "number") val = val.toFixed(2);
             return `<td>${val}</td>`;
         }).join('');
         tbody.appendChild(tr);
@@ -79,14 +123,14 @@ function showLakeDetails(lake) {
 
         // Create canvas if not exists
         let canvas = document.getElementById(canvasId);
-        if(!canvas) {
+        if (!canvas) {
             canvas = document.createElement('canvas');
             canvas.id = canvasId;
             canvas.style.marginBottom = '30px';
             container.appendChild(canvas);
         }
 
-        if(chartInstances[canvasId]) chartInstances[canvasId].destroy();
+        if (chartInstances[canvasId]) chartInstances[canvasId].destroy();
 
         const ctx = canvas.getContext('2d');
         chartInstances[canvasId] = new Chart(ctx, {
