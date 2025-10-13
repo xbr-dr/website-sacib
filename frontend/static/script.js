@@ -1,7 +1,7 @@
 let map = L.map('map').setView([34.11582, 74.87038], 11);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
+    attribution: 'Xbr_Dr'
 }).addTo(map);
 
 const lakes = [
