@@ -8,13 +8,14 @@ body {
 
 header {
     text-align: center;
-    background-color: #004466;
+    background-color: lab(13.28% -4.38 -15.88);
     color: white;
     padding: 15px;
 }
 
 header h1 {
     margin: 5px 0;
+    color: hsl(59, 54%, 71%);
 }
 
 header h3 {
@@ -28,7 +29,7 @@ header h3 {
     height: 400px;
     margin: 15px auto;
     width: 90%;
-    border: 2px solid #004466;
+    border: 2px solid hsl(200, 27%, 39%);
     border-radius: 10px;
 }
 
@@ -43,7 +44,7 @@ header h3 {
 }
 
 #details h2 {
-    color: #004466;
+    color: hsl(200, 82%, 30%);
 }
 
 #details p {
@@ -87,7 +88,7 @@ footer {
 }
 
 footer a {
-    color: #ffd700;
+    color: hsl(26, 100%, 50%);
     text-decoration: none;
 }
 

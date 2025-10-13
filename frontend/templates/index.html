@@ -5,13 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GeoPredict</title>
 
+    <!-- Favicon / Logo -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+
     <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
 </head>
 <body>
     <header>
-        <h1>GeoPredict</h1>
+        <h1>
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" style="height:90px; vertical-align:middle; margin-right:10px;"><br>
+            GeoPredict
+        </h1>
         <h3>Predictive and Geospatial Water Quality Alert System for Lakes in Kashmir</h3>
     </header>
 
@@ -52,7 +58,8 @@
     </main>
 
     <footer>
-        Developed by <a href="https://www.linkedin.com/in/sacib-mir/" target="_blank">Saqib Mir</a> under the supervision of Dr. Khursheed Ah. Dar
+        <div>Developed at Department of IT, SP College</div>
+        <div>Developed by <a href="https://www.linkedin.com/in/sacib-mir/" target="_blank">Saqib Mir</a> under the supervision of Dr. Khursheed Ah. Dar</div>
     </footer>
 
     <!-- JS -->
