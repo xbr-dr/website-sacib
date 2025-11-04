@@ -40,33 +40,45 @@
                 locals. It is integral to tourism and recreation in the Kashmir Valley and is variously known as 
                 the "Lake of Flowers", "Jewel in the crown of Kashmir" or "Srinagar's Jewel".The lake is also an 
                 important source for commercial operations in fishing and water plant harvesting.
-</h5>
+            </h5>
 
             <div id="actions"></div>
             <h2>Water Quality Data</h2>
-            <table id="lake-table">
-                <thead>
-                    <tr>
-                        <th>Max BOD</th>
-                        <th>Max Conductivity</th>
-                        <th>Max DO</th>
-                        <th>Max Temp</th>
-                        <th>Max pH</th>
-                        <th>Min BOD</th>
-                        <th>Min Conductivity</th>
-                        <th>Min DO</th>
-                        <th>Min Temp</th>
-                        <th>Min pH</th>
-                        <th>Lake</th>
-                        <th>Source</th>
-                        <th>Year</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+            <div class="table-wrapper">
+                <table id="lake-table">
+                    <thead>
+                        <tr>
+                            <th>Lake Name</th>
+                            <th>Year</th>
+                            <th>Source</th>
+                            <th colspan="2">Temperature (°C)</th>
+                            <th colspan="2">Dissolved Oxygen</th>
+                            <th colspan="2">pH</th>
+                            <th colspan="2">Conductivity</th>
+                            <th colspan="2">BOD</th>
+                        </tr>
+                        <tr class="sub-header">
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>Min</th>
+                            <th>Max</th>
+                            <th>Min</th>
+                            <th>Max</th>
+                            <th>Min</th>
+                            <th>Max</th>
+                            <th>Min</th>
+                            <th>Max</th>
+                            <th>Min</th>
+                            <th>Max</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
 
 
-            <h2>Historic trends</h2>
+            <h2>Historic Trends</h2>
             <div id="plots">
                 <canvas id="lineChart"></canvas>
             </div>

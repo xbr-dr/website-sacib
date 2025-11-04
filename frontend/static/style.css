@@ -52,26 +52,91 @@ header h3 {
     margin: 5px 0 15px 0;
 }
 
+/* Table Wrapper for Horizontal Scroll */
+.table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
 /* Table */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
+    margin-bottom: 0;
+    font-size: 0.9rem;
 }
 
 th, td {
-    border: 1px solid #ccc;
-    padding: 8px;
+    border: 1px solid #ddd;
+    padding: 12px 8px;
     text-align: center;
 }
 
 th {
     background-color: #004466;
     color: white;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Sub-header styling */
+tr.sub-header th {
+    background-color: #005580;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* First column (Lake Name) sticky on scroll */
+tbody td:first-child,
+thead th:first-child {
+    position: sticky;
+    left: 0;
+    background-color: #fff;
+    z-index: 5;
+    font-weight: 600;
+}
+
+thead th:first-child {
+    background-color: #004466;
+    z-index: 15;
+}
+
+/* Alternating row colors */
+tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
 }
 
 tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #ffffff;
+}
+
+/* Hover effect */
+tbody tr:hover {
+    background-color: #e8f4f8;
+    transition: background-color 0.2s ease;
+}
+
+/* Source column styling */
+tbody td.source-actual {
+    background-color: #d4edda;
+    color: #155724;
+    font-weight: 600;
+}
+
+tbody td.source-forecast {
+    background-color: #fff3cd;
+    color: #856404;
+    font-weight: 600;
+}
+
+/* Year column emphasis */
+tbody td:nth-child(2) {
+    font-weight: 600;
+    color: #004466;
 }
 
 /* Plots */
@@ -94,4 +159,25 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #map {
+        height: 300px;
+        width: 95%;
+    }
+    
+    #details {
+        width: 95%;
+        padding: 10px;
+    }
+    
+    table {
+        font-size: 0.8rem;
+    }
+    
+    th, td {
+        padding: 8px 5px;
+    }
 }

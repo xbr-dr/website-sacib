@@ -101,14 +101,71 @@ function showLakeDetails(lake) {
         return;
     }
 
-    // Populate table dynamically
+    // Populate table with proper column order
     lakeRows.forEach(row => {
         const tr = document.createElement('tr');
-        tr.innerHTML = Object.keys(row).map(k => {
-            let val = row[k];
-            if (typeof val === "number") val = val.toFixed(2);
-            return `<td>${val}</td>`;
-        }).join('');
+        
+        // Lake Name
+        const tdLake = document.createElement('td');
+        tdLake.textContent = row['Name of Lake'];
+        tr.appendChild(tdLake);
+        
+        // Year
+        const tdYear = document.createElement('td');
+        tdYear.textContent = row['Year'];
+        tr.appendChild(tdYear);
+        
+        // Source with styling
+        const tdSource = document.createElement('td');
+        tdSource.textContent = row['Source'];
+        tdSource.className = row['Source'].toLowerCase() === 'actual' ? 'source-actual' : 'source-forecast';
+        tr.appendChild(tdSource);
+        
+        // Temperature Min & Max
+        const tdTempMin = document.createElement('td');
+        tdTempMin.textContent = parseFloat(row['Min Temperature']).toFixed(2);
+        tr.appendChild(tdTempMin);
+        
+        const tdTempMax = document.createElement('td');
+        tdTempMax.textContent = parseFloat(row['Max Temperature']).toFixed(2);
+        tr.appendChild(tdTempMax);
+        
+        // Dissolved Oxygen Min & Max
+        const tdDOMin = document.createElement('td');
+        tdDOMin.textContent = parseFloat(row['Min Dissolved Oxygen']).toFixed(2);
+        tr.appendChild(tdDOMin);
+        
+        const tdDOMax = document.createElement('td');
+        tdDOMax.textContent = parseFloat(row['Max Dissolved Oxygen']).toFixed(2);
+        tr.appendChild(tdDOMax);
+        
+        // pH Min & Max
+        const tdpHMin = document.createElement('td');
+        tdpHMin.textContent = parseFloat(row['Min pH']).toFixed(2);
+        tr.appendChild(tdpHMin);
+        
+        const tdpHMax = document.createElement('td');
+        tdpHMax.textContent = parseFloat(row['Max pH']).toFixed(2);
+        tr.appendChild(tdpHMax);
+        
+        // Conductivity Min & Max
+        const tdCondMin = document.createElement('td');
+        tdCondMin.textContent = parseFloat(row['Min Conductivity']).toFixed(2);
+        tr.appendChild(tdCondMin);
+        
+        const tdCondMax = document.createElement('td');
+        tdCondMax.textContent = parseFloat(row['Max Conductivity']).toFixed(2);
+        tr.appendChild(tdCondMax);
+        
+        // BOD Min & Max
+        const tdBODMin = document.createElement('td');
+        tdBODMin.textContent = parseFloat(row['Min BOD']).toFixed(2);
+        tr.appendChild(tdBODMin);
+        
+        const tdBODMax = document.createElement('td');
+        tdBODMax.textContent = parseFloat(row['Max BOD']).toFixed(2);
+        tr.appendChild(tdBODMax);
+        
         tbody.appendChild(tr);
     });
 
