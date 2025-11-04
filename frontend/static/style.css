@@ -40,11 +40,13 @@ header h3 {
     background-color: #fff;
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #details h2 {
     color: hsl(200, 82%, 30%);
+    margin-top: 30px;
+    margin-bottom: 15px;
 }
 
 #details p {
@@ -52,12 +54,174 @@ header h3 {
     margin: 5px 0 15px 0;
 }
 
+/* Alert Section */
+.alert-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    color: white;
+}
+
+.alert-section h2 {
+    color: white;
+    margin-top: 0;
+}
+
+.alert-section p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 20px;
+}
+
+.alert-form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    font-family: Arial, sans-serif;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.btn-alert {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-alert:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.btn-alert:active {
+    transform: translateY(0);
+}
+
+.btn-alert:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.alert-info {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 15px;
+    color: white;
+}
+
+.alert-info small {
+    line-height: 1.5;
+}
+
+/* Summary Cards */
+.summary-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.summary-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.summary-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.summary-card .value {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.summary-card .trend {
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+.summary-card.temperature {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.summary-card.oxygen {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.summary-card.ph {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.summary-card.conductivity {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.summary-card.bod {
+    background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+}
+
+/* Chart Container */
+.chart-container {
+    position: relative;
+    height: 400px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 /* Table Wrapper for Horizontal Scroll */
 .table-wrapper {
     overflow-x: auto;
     margin-bottom: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Table */
@@ -68,7 +232,8 @@ table {
     font-size: 0.9rem;
 }
 
-th, td {
+th,
+td {
     border: 1px solid #ddd;
     padding: 12px 8px;
     text-align: center;
@@ -122,13 +287,13 @@ tbody tr:hover {
 
 /* Source column styling */
 tbody td.source-actual {
-    background-color: #d4edda;
+    background-color: #ffffff;
     color: #155724;
     font-weight: 600;
 }
 
 tbody td.source-forecast {
-    background-color: #fff3cd;
+    background-color: #fbfbfb;
     color: #856404;
     font-weight: 600;
 }
@@ -139,9 +304,83 @@ tbody td:nth-child(2) {
     color: #004466;
 }
 
+/* Color coding for water quality parameters */
+tbody td.safe {
+    background-color: #d4edda !important;
+    color: #155724;
+    font-weight: 600;
+}
+
+tbody td.caution {
+    background-color: #fff3cd !important;
+    color: #856404;
+    font-weight: 600;
+}
+
+tbody td.unsafe {
+    background-color: #f8d7da !important;
+    color: #721c24;
+    font-weight: 600;
+}
+
+/* Legend Container */
+.legend-container {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #dee2e6;
+}
+
+.legend-container h4 {
+    margin: 0 0 10px 0;
+    color: #004466;
+    font-size: 1rem;
+}
+
+.legend-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-box {
+    width: 30px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.legend-box.safe {
+    background-color: #d4edda;
+}
+
+.legend-box.caution {
+    background-color: #fff3cd;
+}
+
+.legend-box.unsafe {
+    background-color: #f8d7da;
+}
+
+.legend-text {
+    font-size: 0.9rem;
+    color: #333;
+}
+
 /* Plots */
 #plots {
     margin-top: 20px;
+}
+
+#plots canvas {
+    margin-bottom: 30px;
 }
 
 /* Footer */
@@ -150,6 +389,7 @@ footer {
     padding: 10px;
     background-color: #004466;
     color: white;
+    margin-top: 30px;
 }
 
 footer a {
@@ -167,17 +407,32 @@ footer a:hover {
         height: 300px;
         width: 95%;
     }
-    
+
     #details {
         width: 95%;
         padding: 10px;
     }
-    
+
+    .summary-container {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+    }
+
+    .summary-card .value {
+        font-size: 1.5rem;
+    }
+
+    .chart-container {
+        height: 300px;
+        padding: 10px;
+    }
+
     table {
         font-size: 0.8rem;
     }
-    
-    th, td {
+
+    th,
+    td {
         padding: 8px 5px;
     }
 }

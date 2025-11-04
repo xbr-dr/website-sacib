@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,24 +11,26 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
 </head>
+
 <body>
     <header>
         <h1>
-            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" style="height:90px; vertical-align:middle; margin-right:10px;"><br>
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo"
+                style="height:90px; vertical-align:middle; margin-right:10px;"><br>
             GeoPredict
         </h1>
         <h3>Predictive and Geospatial Water Quality Alert System for Lakes in Kashmir</h3>
     </header>
 
     <main>
-        
+
         <div id="map"></div>
         <div style="text-align:center; margin: 10px 0;">
             <caption style="font-size:1.1em; color:#333;">Click on the map marker to view lake details</caption>
         </div>
-        
+
 
         <div id="details">
             <h2 id="lake-name">Dal Lake</h2>
@@ -35,15 +38,55 @@
 
             <h5 id="lake-info">
                 Dal (Urdu pronunciation: [ɖəl] ; Kashmiri pronunciation: [ɖal]) is a freshwater lake in Srinagar,
-                the summer capital of Jammu and Kashmir in Indian-administered Kashmir. It is an urban lake, the 
-                second largest lake in Jammu and Kashmir, and the most visited place in Srinagar by tourists and 
-                locals. It is integral to tourism and recreation in the Kashmir Valley and is variously known as 
-                the "Lake of Flowers", "Jewel in the crown of Kashmir" or "Srinagar's Jewel".The lake is also an 
+                the summer capital of Jammu and Kashmir in Indian-administered Kashmir. It is an urban lake, the
+                second largest lake in Jammu and Kashmir, and the most visited place in Srinagar by tourists and
+                locals. It is integral to tourism and recreation in the Kashmir Valley and is variously known as
+                the "Lake of Flowers", "Jewel in the crown of Kashmir" or "Srinagar's Jewel".The lake is also an
                 important source for commercial operations in fishing and water plant harvesting.
             </h5>
 
+
+
+            <!-- Summary Statistics Cards -->
+            <h2>Water Quality Summary</h2>
+            <div id="summary-cards" class="summary-container">
+                <!-- Cards will be populated by JavaScript -->
+            </div>
+
+            <!-- Radar Chart for Current Year -->
+            <h2>Water Quality Overview (Latest Year)</h2>
+            <div class="chart-container">
+                <canvas id="radarChart"></canvas>
+            </div>
+
+            <!-- Bar Chart Comparison -->
+            <h2>Year-over-Year Comparison</h2>
+            <div class="chart-container">
+                <canvas id="barChart"></canvas>
+            </div>
+
             <div id="actions"></div>
             <h2>Water Quality Data</h2>
+
+            <!-- Color Legend -->
+            <div class="legend-container">
+                <h4>Color Coding (Based on BIS & WHO Standards):</h4>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <span class="legend-box safe"></span>
+                        <span class="legend-text"><strong>Green:</strong> Safe - Within acceptable limits</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-box caution"></span>
+                        <span class="legend-text"><strong>Yellow:</strong> Caution - Approaching unsafe levels</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-box unsafe"></span>
+                        <span class="legend-text"><strong>Red:</strong> Unsafe - Exceeds safe limits</span>
+                    </div>
+                </div>
+            </div>
+
             <div class="table-wrapper">
                 <table id="lake-table">
                     <thead>
@@ -80,14 +123,95 @@
 
             <h2>Historic Trends</h2>
             <div id="plots">
-                <canvas id="lineChart"></canvas>
+                <!-- Line charts will be populated here -->
+            </div>
+
+            <!-- Heatmap for Parameter Correlation -->
+            <h2>Parameter Averages Heatmap</h2>
+            <div class="chart-container">
+                <canvas id="heatmapChart"></canvas>
+            </div>.
+
+
+
+            <!-- Alert System -->
+            <div class="alert-section">
+                <h2>Send Water Quality Alert</h2>
+                <p>Report water quality concerns to the authorities via email</p>
+                <form id="alert-form" class="alert-form">
+                    <div class="form-group">
+                        <label for="alert-message">Describe the Issue:</label>
+                        <textarea id="alert-message" name="message" rows="4" required
+                            placeholder="Describe the water quality issue you observed..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="alert-location">Specific Location (Optional):</label>
+                        <input type="text" id="alert-location" name="location"
+                            placeholder="e.g., Near Boulevard Road, Dal Lake">
+                    </div>
+                    <button type="submit" class="btn-alert">📧 Send Alert via Email</button>
+                </form>
+                <p class="alert-info">
+                    <small>⚠️ Clicking "Send Alert" will open your email client with pre-filled details. Simply click
+                        send to report the issue.</small>
+                </p>
+            </div>
+
+            <!-- Water Quality Standards Reference -->
+            <h2>Water Quality Standards Reference</h2>
+            <div class="standards-reference">
+                <p><em>Based on BIS (Bureau of Indian Standards) IS 2296 and WHO Guidelines for Drinking Water
+                        Quality</em></p>
+
+                <div class="standards-grid">
+                    <div class="standard-card">
+                        <h4>🌡️ Temperature</h4>
+                        <p><span class="safe-indicator">●</span> Safe: 10-25°C</p>
+                        <p><span class="caution-indicator">●</span> Caution: 5-30°C</p>
+                        <p><span class="unsafe-indicator">●</span> Unsafe: Outside range</p>
+                        <small>Optimal for aquatic life and minimal bacterial growth</small>
+                    </div>
+
+                    <div class="standard-card">
+                        <h4>💧 Dissolved Oxygen (DO)</h4>
+                        <p><span class="safe-indicator">●</span> Safe: 6-14 mg/L</p>
+                        <p><span class="caution-indicator">●</span> Caution: 4-6 mg/L</p>
+                        <p><span class="unsafe-indicator">●</span> Unsafe: Below 4 mg/L</p>
+                        <small>Essential for aquatic life; >6 mg/L indicates good quality</small>
+                    </div>
+
+                    <div class="standard-card">
+                        <h4>⚗️ pH Level</h4>
+                        <p><span class="safe-indicator">●</span> Safe: 6.5-8.5</p>
+                        <p><span class="caution-indicator">●</span> Caution: 6.0-9.0</p>
+                        <p><span class="unsafe-indicator">●</span> Unsafe: Outside range</p>
+                        <small>Neutral to slightly alkaline is ideal for most uses</small>
+                    </div>
+
+                    <div class="standard-card">
+                        <h4>⚡ Conductivity</h4>
+                        <p><span class="safe-indicator">●</span> Safe: 0-300 μS/cm</p>
+                        <p><span class="caution-indicator">●</span> Caution: 300-500 μS/cm</p>
+                        <p><span class="unsafe-indicator">●</span> Unsafe: Above 500 μS/cm</p>
+                        <small>Measures dissolved salts; lower is better</small>
+                    </div>
+
+                    <div class="standard-card">
+                        <h4>🧪 BOD (Biological Oxygen Demand)</h4>
+                        <p><span class="safe-indicator">●</span> Safe: 0-3 mg/L</p>
+                        <p><span class="caution-indicator">●</span> Caution: 3-6 mg/L</p>
+                        <p><span class="unsafe-indicator">●</span> Unsafe: Above 6 mg/L</p>
+                        <small>Indicates organic pollution; lower values mean cleaner water</small>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
     <footer>
-        <div>Developed at Department of IT, SP College</div>
-        <div>Developed by <a href="https://www.linkedin.com/in/sacib-mir/" target="_blank">Saqib Mir</a> under the supervision of Dr. Khursheed Ah. Dar</div>
+        <div>©Developed at Department of IT, Sri Pratap College Srinagar</div>
+        <div>by <a href="https://www.linkedin.com/in/sacib-mir/" target="_blank">Saqib Mir</a> <br>under the
+            supervision of Dr. Khursheed Ah. Dar</div>
     </footer>
 
     <!-- JS -->
@@ -95,4 +219,5 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
+
 </html>
